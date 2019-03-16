@@ -87,7 +87,6 @@ public class ScreenEncoder implements Device.RotationListener {
         boolean eof = false;
         MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
 
-
         while (!consumeRotationChange() && !eof) {
             int outputBufferId = codec.dequeueOutputBuffer(bufferInfo, -1);
             eof = (bufferInfo.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0;
@@ -151,7 +150,7 @@ public class ScreenEncoder implements Device.RotationListener {
     }
 
     private static IBinder createDisplay() {
-        return SurfaceControl.createDisplay("scrcpy", false);
+        return SurfaceControl.createDisplay("scrcpy", true);
     }
 
     private static void configure(MediaCodec codec, MediaFormat format) {
